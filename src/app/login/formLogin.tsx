@@ -140,9 +140,9 @@ function FormLogin() {
                 onChange={(e) => handleChange(2, e.target.value)}
                 required
               />
-              <button className="s-hide-btn-pwd" onClick={handleHideShowPwd}>
+              <a className="s-hide-btn-pwd" onClick={handleHideShowPwd}>
                 <FontAwesomeIcon icon={hidePwd ? faEyeSlash : faEye} />
-              </button>
+              </a>
             </div>
           </div>
           <div className="forgetmenot">

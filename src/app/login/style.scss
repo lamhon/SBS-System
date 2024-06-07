@@ -67,6 +67,11 @@
     position: absolute;
     right: 0;
     top: 0;
+    color: #000;
+
+    &:hover {
+        color: #000;
+    }
 }
 
 .s-login-nav a,
