@@ -1,0 +1,110 @@
+.s-input {
+    background: #fff;
+    font-size: 24px;
+    width: 100%;
+    border-width: 0.0625rem;
+    border: 1px solid #8c8f94;
+    padding: 0.1875rem 0.3125rem;
+    margin: 0 6px 16px 0;
+    min-height: 40px;
+    max-height: none;
+    border-radius: 4px;
+
+    &:focus {
+        border-color: #2271b1;
+        box-shadow: 0 0 0 1px #2271b1;
+        outline: 2px solid transparent;
+    }
+}
+
+.s-input-pwd {
+    padding-right: 2.35rem;
+}
+
+.s-input-wrong {
+    border-color: #ff0000;
+    box-shadow: 0 0 0 1px #ff0000;
+    outline: 2px solid transparent;
+}
+
+.s-label-input {
+    font-size: 14px;
+}
+
+.s-form-login {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
+    padding: 26px 24px 34px;
+    background: #fff;
+}
+
+.s-login-bg {
+    background: #f0f0f1
+}
+
+.s-login-btn {
+    border-radius: 6px;
+    padding: 4px 21px;
+    background: #fff;
+    font-size: 14px;
+}
+
+.s-hide-btn-pwd {
+    background: 0 0;
+    border: 1px solid transparent;
+    box-shadow: none;
+    font-size: 14px;
+    line-height: 2;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 40px;
+    min-height: 44px;
+    margin: 0;
+    padding: 5px 9px;
+    border-radius: 4px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #000;
+
+    &:hover {
+        color: #000;
+    }
+}
+
+.s-login-nav a,
+.s-login-nav span {
+    text-decoration: none;
+    color: #50575e;
+    font-size: 13px;
+}
+
+.s-login-nav a:hover {
+    color: #135e96;
+    transition-duration: .05s;
+    transition-timing-function: ease-in-out;
+}
+
+.forgetmenot {
+    font-weight: 400;
+}
+
+label {
+    cursor: pointer;
+}
+
+.forgetmenot label {
+    font-size: 14px;
+}
+
+input[type=checkbox] {
+    background: #fff;
+    color: #50575e;
+    height: 1rem;
+    margin: -0.25rem 0.25rem 0 0;
+    vertical-align: middle;
+    width: 1rem;
+    min-width: 1rem;
+}

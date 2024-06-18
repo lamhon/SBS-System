@@ -1,11 +1,12 @@
 import { cookies } from 'next/headers';
 import { NextResponse, NextRequest, NextFetchEvent } from 'next/server';
 
-const protectedRoutes = ['/dashboard']
-const publicRoutes = ['/login', '/']
+const protectedRoutes = ['/dashboard', '/refresh', '/invoice']
+const publicRoutes = ['/signin', '/']
 
 export default async function middleware(req: NextRequest, event: NextFetchEvent) {
     const { pathname } = req.nextUrl
+    console.log('req:', req.nextUrl.pathname)
 
     // -- Check the current route is protected or public
     const isProtectedRoute = protectedRoutes.includes(pathname)
@@ -13,29 +14,18 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
 
     const accessToken = cookies().get('accessToken')?.value
     const refreshToken = cookies().get('refreshToken')?.value
-    console.log('accessToken: ', accessToken)
-    console.log('refreshToken: ', refreshToken)
+    // console.log('accessToken: ', accessToken)
+    // console.log('refreshToken: ', refreshToken)
 
     if (!accessToken && refreshToken) {
-        console.log('go to refresh token')
-        return NextResponse.redirect(new URL('/refresh', req.url))
+        console.log('MIDDLEWARE: go to refresh token')
+        return NextResponse.redirect(new URL(`/refresh?origin=${pathname.replace('/', '')}`, req.url))
     }
 
-    // if (req.nextUrl.pathname.startsWith('/api/auth/refresh') &&
-    //     accessToken &&
-    //     refreshToken
-    // ) {
-    //     console.log('from refresh to ...')
-    //     return NextResponse.redirect(new URL('/dashboard', req.url))
-    // }
-    // event.waitUntil(
-        
-    // )
-
     // Redirect to login if the user is not authenticated
-    if (isProtectedRoute && !accessToken) {
-        console.log('token expired')
-        return NextResponse.redirect(new URL('/login', req.url))
+    if (isProtectedRoute && !accessToken && !refreshToken) {
+        console.log('MIDDLEWARE: token expired')
+        return NextResponse.redirect(new URL('/signin', req.url))
     }
 
     // Redirect to dasboard if the user is authenticated
@@ -43,6 +33,7 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
         accessToken &&
         !req.nextUrl.pathname.startsWith('/dashboard')
     ) {
+        console.log('MIDDLEWARE: signed in')
         return NextResponse.redirect(new URL('/dashboard', req.url))
     }
 
@@ -51,5 +42,5 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
 
 // Routes middleware should not run on
 export const config = {
-    matcher: ['/((?!api|refresh|_next/static|_next/image|.*\\.png$).*)'],
+    matcher: ['/((?!api|favicon.ico|_next/static|_next/image|.*\\.png$|refresh).*)'],
 }

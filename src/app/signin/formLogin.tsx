@@ -28,8 +28,8 @@ function FormLogin() {
   const { response, error, loading, fetchData } = useFetch()
 
   React.useEffect(() => {
-    console.log(response)
-    console.log(error)
+    // console.log(response)
+    // console.log(error)
     if (error) {
       showToast(
         error,
